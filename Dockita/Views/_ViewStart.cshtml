@@ -1,0 +1,21 @@
+﻿
+@if (ViewContext.RouteData.Values["Controller"].ToString() == "Admin")
+{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+else if (ViewContext.RouteData.Values["Controller"].ToString() == "Doctor")
+{
+    Layout = "~/Views/Shared/_DoctorLayout.cshtml";
+}
+
+else if (ViewContext.RouteData.Values["Controller"].ToString() == "Auth" || ViewContext.RouteData.Values["Controller"].ToString() == "Errors")
+{
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+else
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
