@@ -9,8 +9,8 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["Dockita.csproj", "Dockita/"]
 RUN dotnet restore "Dockita/Dockita.csproj"
+
 COPY . .
-WORKDIR "/src/Dockita"
 RUN dotnet build "Dockita.csproj" -c Release -o /app/build
 
 FROM build AS publish
