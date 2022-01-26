@@ -1,5 +1,4 @@
-﻿
-using Dockita.Data;
+﻿using Dockita.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -22,7 +21,6 @@ namespace Dockita.Extensions
 
             return $"User ID={userInfo[0]};Password={userInfo[1]};Host={databaseUri.Host};Port={databaseUri.Port};" +
             $"Database={db};Pooling=true;SSL Mode=Require;Trust Server Certificate=True;";
-
         }
 
         public static void AddDbContextAndConfigurations(this IServiceCollection services, IWebHostEnvironment env, IConfiguration config)

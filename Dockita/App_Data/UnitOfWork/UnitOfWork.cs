@@ -2,8 +2,6 @@
 using Dockita.App_Data.Repositories.Implementations;
 using Dockita.Data;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Dockita.App_Data.UnitOfWork
@@ -16,10 +14,12 @@ namespace Dockita.App_Data.UnitOfWork
         private IPaymentRepository _payment;
         private IDoctorRepository _doctor;
         private readonly DockitaDBContext _context;
+
         public UnitOfWork(DockitaDBContext context)
         {
             _context = context;
         }
+
         public IBookingRepository Booking => _booking ??= new BookingRepository(_context);
 
         public IReviewRepository Reviews => _review ??= new ReviewRepository(_context);
@@ -29,6 +29,7 @@ namespace Dockita.App_Data.UnitOfWork
         public IPaymentRepository Payments => _payment ??= new PaymentRepository(_context);
 
         public IDoctorRepository Doctors => _doctor ??= new DoctorRepository(_context);
+
         public void Dispose()
         {
             _context.Dispose();

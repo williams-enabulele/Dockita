@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Dockita.Models
 {
@@ -17,10 +15,10 @@ namespace Dockita.Models
         public string Avatar { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+
+        public ICollection<Doctor> Doctors { get; set; }
         public ICollection<Transaction> Transactions { get; set; }
         public ICollection<Booking> Bookings { get; set; }
         public ICollection<Review> Reviews { get; set; }
-
-
     }
 }

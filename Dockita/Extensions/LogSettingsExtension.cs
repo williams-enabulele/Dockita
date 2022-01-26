@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.Slack;
@@ -10,9 +9,8 @@ namespace Dockita.Extensions
 {
     public static class LogSettingsExtension
     {
-        public static void SetupSerilog(this IServiceCollection services, IConfiguration config)
+        public static void SetupSerilog(IConfiguration config)
         {
-
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.File(
                     path: ".\\Logs\\log-.txt",
@@ -22,7 +20,7 @@ namespace Dockita.Extensions
                 )
                .WriteTo.Slack(new SlackSinkOptions()
                {
-                   WebHookUrl = "https://hooks.slack.com/services/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",
+                   WebHookUrl = "https://hooks.slack.com/services/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",
                    CustomChannel = "#dockita-loggings",
                    BatchSizeLimit = 20,
                    CustomIcon = ":memo:",

@@ -2,16 +2,15 @@
 using Dockita.Data;
 using Dockita.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Dockita.App_Data.Repositories.Implementations
 {
-    public class BookingRepository : GenericRepository<Booking>,IBookingRepository
+    public class BookingRepository : GenericRepository<Booking>, IBookingRepository
     {
         private readonly DockitaDBContext _context;
-        public BookingRepository(DockitaDBContext context) : base(context) 
+
+        public BookingRepository(DockitaDBContext context) : base(context)
         {
             _context = context;
         }

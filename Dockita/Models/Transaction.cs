@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Dockita.Models
+﻿namespace Dockita.Models
 {
     public class Transaction : BaseEntity
     {
@@ -15,6 +10,5 @@ namespace Dockita.Models
         public AppUser AppUser { get; set; }
         public Booking Booking { get; set; }
         public Payment Payment { get; set; }
-
     }
 }

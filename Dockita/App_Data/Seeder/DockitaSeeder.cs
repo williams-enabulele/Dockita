@@ -1,7 +1,6 @@
 ﻿using Dockita.Data;
 using Dockita.Models;
 using Microsoft.AspNetCore.Identity;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,8 +9,6 @@ using System.Threading.Tasks;
 
 namespace Dockita.App_Data.Seeder
 {
- 
-
     public class DockitaSeeder
     {
         public static async Task SeedData(DockitaDBContext dbContext, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
@@ -49,55 +46,35 @@ namespace Dockita.App_Data.Seeder
                 await userManager.CreateAsync(user, "Password@123");
                 await userManager.AddToRoleAsync(user, "Admin");
 
-                var path = File.ReadAllText(FilePath(baseDir, "Json/users.json"));
+                /*   var path = File.ReadAllText(FilePath(baseDir, "Json/users.json"));
 
-                var dockitaUsers = JsonConvert.DeserializeObject<List<AppUser>>(path);
-                for (int i = 0; i < dockitaUsers.Count; i++)
-                {
-                    dockitaUsers[i].EmailConfirmed = true;
-                    await userManager.CreateAsync(dockitaUsers[i], "Password@123");
-                    if (i < 5)
-                    {
-                        await userManager.AddToRoleAsync(dockitaUsers[i], "Doctor");
-                        continue;
-                    }
-                    await userManager.AddToRoleAsync(dockitaUsers[i], "User");
-                }
+                   var dockitaUsers = JsonConvert.DeserializeObject<List<AppUser>>(path);
+                   for (int i = 0; i < dockitaUsers.Count; i++)
+                   {
+                       dockitaUsers[i].EmailConfirmed = true;
+                       await userManager.CreateAsync(dockitaUsers[i], "Password@123");
+                       if (i < 5)
+                       {
+                           await userManager.AddToRoleAsync(dockitaUsers[i], "Doctor");
+                           continue;
+                       }
+                       await userManager.AddToRoleAsync(dockitaUsers[i], "User");
+                   }*/
             }
-
 
             // Bookings and Payment
             if (!dbContext.Bookings.Any())
             {
-                var path = File.ReadAllText(FilePath(baseDir, "Json/bookings.json"));
+                /* var path = File.ReadAllText(FilePath(baseDir, "Json/bookings.json"));
 
-                var bookings = JsonConvert.DeserializeObject<List<Booking>>(path);
-                await dbContext.Bookings.AddRangeAsync(bookings);
+                 var bookings = JsonConvert.DeserializeObject<List<Booking>>(path);
+                 await dbContext.Bookings.AddRangeAsync(bookings);*/
             }
-
-            // Hotels, roomtypes n rooms
-          /*  if (!dbContext.Hotels.Any())
-            {
-                var path = File.ReadAllText(FilePath(baseDir, "Json/Hotel.json"));
-
-                var hotels = JsonConvert.DeserializeObject<List<Hotel>>(path);
-                await dbContext.Hotels.AddRangeAsync(hotels);
-            }
-
-            // Whishlist
-            if (!dbContext.WishLists.Any())
-            {
-                var path = File.ReadAllText(FilePath(baseDir, "Json/wishlists.json"));
-
-                var wishList = JsonConvert.DeserializeObject<List<WishList>>(path);
-                await dbContext.WishLists.AddRangeAsync(wishList);
-            }*/
-
 
             await dbContext.SaveChangesAsync();
         }
 
-        static string FilePath(string folderName, string fileName)
+        private static string FilePath(string folderName, string fileName)
         {
             return Path.Combine(folderName, fileName);
         }

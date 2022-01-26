@@ -1,12 +1,7 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Dockita.DTOs
 {
-   
     public class Response<T>
     {
         public T Data { get; set; }
@@ -21,9 +16,11 @@ namespace Dockita.DTOs
             StatusCode = statusCode;
             Message = msg;
         }
+
         public Response()
         {
         }
+
         /// <summary>
         /// Sets the data to the appropriate response
         /// at run time
@@ -34,10 +31,12 @@ namespace Dockita.DTOs
         {
             return new Response<T> { Succeeded = false, Message = errorMessage, StatusCode = statusCode };
         }
+
         public static Response<T> Success(string successMessage, T data, int statusCode = 200)
         {
             return new Response<T> { Succeeded = true, Message = successMessage, Data = data, StatusCode = statusCode };
         }
+
         public override string ToString() => JsonConvert.SerializeObject(this);
     }
 }

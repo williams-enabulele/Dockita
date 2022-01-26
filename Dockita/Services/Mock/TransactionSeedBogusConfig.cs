@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Dockita.ViewModels
+namespace Dockita.Services.Mock
 {
-    public class LoginViewModel
+    public class TransactionSeedBogusConfig
     {
     }
 }
