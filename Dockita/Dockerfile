@@ -7,7 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["Dockita/Dockita/Dockita.csproj", "Dockita/"]
+COPY ["./Dockita/Dockita/Dockita.csproj", "Dockita/"]
 RUN dotnet restore "Dockita/Dockita.csproj"
 COPY . .
 WORKDIR "/src/Dockita"
