@@ -7,7 +7,6 @@ COPY *.csproj ./
 RUN dotnet restore
 
 COPY . ./
-WORKDIR "/src/Dockita"
 RUN dotnet publish -c Release -o out
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:5.0
