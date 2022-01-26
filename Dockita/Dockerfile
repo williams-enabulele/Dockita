@@ -11,10 +11,10 @@ COPY ["Dockita.csproj", "Dockita/"]
 RUN dotnet restore "Dockita/Dockita.csproj"
 
 COPY . .
-RUN dotnet build "Dockita.csproj" -c Release -o /app/build
+RUN dotnet build "Dockita/Dockita.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Dockita.csproj" -c Release -o /app/publish
+RUN dotnet publish "Dockita/Dockita.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
