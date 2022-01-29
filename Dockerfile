@@ -7,16 +7,21 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["Dockita.csproj", "Dockita/"]
-RUN dotnet restore "Dockita/Dockita.csproj"
+COPY *.sln .
 
+
+COPY ["Dockita/Dockita.csproj", "Dockita/"]
+RUN dotnet restore "Dockita/Dockita.csproj"
 COPY . .
-RUN dotnet build "Dockita/Dockita.csproj" -c Release -o /app/build
+
+WORKDIR /src/Dockita
+RUN dotnet build
 
 FROM build AS publish
-RUN dotnet publish "Dockita/Dockita.csproj" -c Release -o /app/publish
+WORKDIR /src/Dockita
+RUN dotnet publish -c Release -o /src/publish
+
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Dockita.dll"]
